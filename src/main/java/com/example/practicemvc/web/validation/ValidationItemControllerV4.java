@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/validation/v3/items")
 @RequiredArgsConstructor
-public class ValidationItemControllerV3 {
+public class ValidationItemControllerV4 {
 
     private final ItemRepository itemRepository;
 

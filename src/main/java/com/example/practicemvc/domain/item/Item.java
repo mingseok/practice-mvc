@@ -9,20 +9,20 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
-//@ScriptAssert(lang = "javascript", script = "_this.price * _this.quantity >= 10000", message = "총합이 10000원 넘게 입력해주세요.")
 public class Item {
 
+    @NotNull(groups = UpdateCheck.class) // 수정할때만
     private Long id;
 
-    @NotBlank(message = "공백X")
+    @NotBlank(groups = {SaveCheck.class, UpdateCheck.class}) // 전부 체크 한다.
     private String itemName;
 
-    @NotNull
-    @Range(min = 1000, max = 1000000)
+    @NotNull(groups = {SaveCheck.class, UpdateCheck.class}) // 전부 체크 한다.
+    @Range(min = 1000, max = 1000000, groups = {SaveCheck.class, UpdateCheck.class})  // 전부 체크 한다.
     private Integer price;
 
-    @NotNull
-    @Max(9999)
+    @NotNull(groups = {SaveCheck.class, UpdateCheck.class}) // 전부 체크 한다.
+    @Max(value = 9999, groups = {SaveCheck.class}) // 저장할때만
     private Integer quantity;
 
     public Item() {

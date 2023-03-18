@@ -26,10 +26,12 @@ public class ValidationItemControllerV2 {
 
     private final ItemRepository itemRepository;
 
-    // WebDataBinder에 검증기를 추가하면 해당 컨트롤러에서는 검증기를 자동으로 적용할 수 있다.
-    // 이 컨트롤러가 호출이 될때 마다 항상 @InitBinder가 불려진다.
-    // 그리하여 계속 dataBinder.addValidators(itemValidator); 인 검증기가 실행 하는 것이다.
-    // 다시 말해, 여기 컨트롤러에서만 모든 메서드에 검증기를 도입 할 수 있는 것이다.
+    /**
+     * WebDataBinder에 검증기를 추가하면 해당 컨트롤러에서는 검증기를 자동으로 적용할 수 있다.
+     * 이 컨트롤러가 호출이 될때 마다 항상 @InitBinder가 불려진다.
+     * 그리하여 계속 dataBinder.addValidators(itemValidator); 인 검증기가 실행 하는 것이다.
+     * 다시 말해, 여기 컨트롤러에서만 모든 메서드에 검증기를 도입 할 수 있는 것이다.
+     */
     @InitBinder
     public void init(WebDataBinder dataBinder) {
         // dataBinder.addValidators(itemValidator);
@@ -55,12 +57,17 @@ public class ValidationItemControllerV2 {
         return "validation/v2/addForm";
     }
 
-    // @Validated란? @ModelAttribute Item 에 대해서 자동으로 검증기가 수행이 되는 것이다.
-    // 그리하여 검증 다하고 문제가 있다면, BindingResult bindingResult 에 담기는 것이다.
-    // 이렇게 할 수 있었던 이유는, @InitBinder 메서드 내부로직에 검증기가 있기 때문에 가능한 것이다.
-    // @Validated는 검증 대상 앞에 붙어야 되는 것이다.
-    // @Validated는 "검증기를 실행하라" 라는 애노테이션이다.
-    // @Validated 와 @Valid 는 동일하다. 둘다 사용해도 된다.
+    //
+
+
+    /**
+     * @Validated란? @ModelAttribute Item 에 대해서 자동으로 검증기가 수행이 되는 것이다.
+     * 그리하여 검증 다하고 문제가 있다면, BindingResult bindingResult 에 담기는 것이다.
+     * 이렇게 할 수 있었던 이유는, @InitBinder 메서드 내부로직에 검증기가 있기 때문에 가능한 것이다.
+     * @Validated는 검증 대상 앞에 붙어야 되는 것이다.
+     * @Validated는 "검증기를 실행하라" 라는 애노테이션이다.
+     * @Validated 와 @Valid 는 동일하다. 둘다 사용해도 된다.
+     */
 //    @PostMapping("/add")
 //    public String addItemV6(@Validated @ModelAttribute Item item, BindingResult
 //            bindingResult, RedirectAttributes redirectAttributes) {
